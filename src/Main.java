@@ -8,6 +8,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         //TODO change in addProduct to unComment
         // put try/catch in add
+        //Variable camel name
+        //searching lösa med steam
         //ArrayList<Product> together = new ArrayList<>() put together - väntar att se vad Martin säger
 
 
