@@ -58,12 +58,4 @@ public class Product {
         return Objects.hash(name, pris, EAN);
     }
 
-    public int idKodCounter() {
-        EAN++;
-        return EAN;
-    }
-
-    public static void lagersaldo() {
-
-    }
 }
