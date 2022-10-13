@@ -1,9 +1,9 @@
 import java.util.Objects;
 
 public class Product {
-    public String name;
-    private int pris = 5;
-    private int EAN = 123;
+    public final String name;
+    private final int pris ;
+    private final int EAN ;
 
     public Product(String name, int pris, int EAN) {
         this.name = name;
@@ -15,24 +15,14 @@ public class Product {
         return pris;
     }
 
-    public void setPris(int pris) {
-        this.pris = pris;
-    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getEAN() {
         return EAN;
-    }
-
-    public void setEAN(int EAN) {
-        this.EAN = EAN;
     }
 
     public int size(int name) {

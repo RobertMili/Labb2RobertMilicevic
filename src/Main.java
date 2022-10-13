@@ -15,9 +15,9 @@ public class Main {
         // ta bort fixa med namn ta bort
 
 
-        ArrayList<Fruit> fruitList = new ArrayList<>();
-        ArrayList<Meat> meatList = new ArrayList<>();
-        ArrayList<Product> productsTogether = new ArrayList<>();
+       final ArrayList<Fruit> fruitList = new ArrayList<>();
+       final ArrayList<Meat> meatList = new ArrayList<>();
+       final ArrayList<Product> productsTogether = new ArrayList<>();
 
         readingFile(fruitList, meatList); // creating file or reading file
 
@@ -39,10 +39,12 @@ public class Main {
                     if (choice2.equals("1")) {
 
                         addFruits(sc, fruitList);
+                        sc.nextLine();
 
                     } else if (choice2.equals("2")) {
 
                         addMeats(sc, meatList);
+                        sc.nextLine();
                     }
                 }
                 case "2" -> {
