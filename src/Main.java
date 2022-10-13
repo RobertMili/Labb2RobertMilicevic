@@ -35,6 +35,7 @@ public class Main {
                 case "1" -> {
                     products();
                     String choice2 = sc.nextLine();
+
                     if (choice2.equals("1")) {
 
                         addFruits(sc, fruitList);
@@ -48,6 +49,7 @@ public class Main {
                     System.out.println("Sökning genom namn");
                     products();
                     String choice3 = sc.nextLine();
+
                     if (choice3.equals("1")) {
 
                         searchingFruitsNamn(sc, fruitList);
@@ -62,6 +64,7 @@ public class Main {
                     System.out.println("Sökning genom pris");
                     products();
                     String choice4 = sc.nextLine();
+
                     if (choice4.equals("1")) {
 
                         searchingFruitPrices(sc, fruitList);
@@ -78,6 +81,7 @@ public class Main {
                     System.out.println("Sökning genom prisintervall");
                     products();
                     String choice4 = sc.nextLine();
+
                     if (choice4.equals("1")) {
 
                         searchingFruitsPriceRange(fruitList, sc);
@@ -92,6 +96,7 @@ public class Main {
                     System.out.println("Sökning genom EAN");
                     products();
                     String choice5 = sc.nextLine();
+
                     if (choice5.equals("1")) {
 
                         searchingEANFruits(sc, fruitList);
@@ -108,6 +113,7 @@ public class Main {
                     System.out.println("Ta bort");
                     products();
                     String choice6 = sc.nextLine();
+
                     if (choice6.equals("1")) {
 
                         removeFruits(fruitList, sc);
@@ -121,6 +127,7 @@ public class Main {
                     System.out.println("Lagersaldo");
                     products();
                     String choice7 = sc.nextLine();
+
                     if (choice7.equals("1")) {
 
                         lagerSaldoFruits(fruitList);
@@ -149,6 +156,7 @@ public class Main {
 
 
                     } else if (choice7.equals("4")) {
+
                         receiptPrintOutDiscount(fruitList, productsTogether);
                     }
                 }
