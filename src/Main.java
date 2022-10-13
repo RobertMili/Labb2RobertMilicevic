@@ -526,7 +526,7 @@ public class Main {
     }
 
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
+
     private static void getLengthOfObjectsTextDynamiskFruit(ArrayList<Fruit> fruitArrayList) {
 
         try {
@@ -534,7 +534,7 @@ public class Main {
                     .sorted(Comparator.comparing(Fruit::getName))
                     .mapToInt(i -> i.getName().length())
                     .reduce((first, second) -> second)
-                    .getAsInt();
+                    .orElse(0);
 
             String priceLength = String.valueOf(fruitArrayList.stream()
                     .sorted(Comparator.comparing(Fruit::getPris))
@@ -563,10 +563,10 @@ public class Main {
         }
     }
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
+
     private static void getLengthOfObjectsTextDynamisk_Meat(ArrayList<Meat> meatArrayList) {
         try {
-            int nameLengthObject = meatArrayList.stream().sorted(Comparator.comparing(Meat::getName)).mapToInt(i -> i.getName().length()).reduce((first, second) -> second).getAsInt();
+            int nameLengthObject = meatArrayList.stream().sorted(Comparator.comparing(Meat::getName)).mapToInt(i -> i.getName().length()).reduce((first, second) -> second).orElse(0);
 
             String prisLength = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getPris)).map(i -> String.valueOf(i.getPris())).reduce((first, second) -> second).stream().mapToInt(String::length).sum());
 
