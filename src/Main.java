@@ -471,8 +471,11 @@ public class Main {
     }
 
     private static Fruit getFruitsObject(ArrayList<Fruit> fruitArrayList, String removeObject) {
-        Fruit fruitsObject = fruitArrayList.stream().filter(i -> i.getName().equals(removeObject)).reduce((first, second) -> second).get();
-        return fruitsObject;
+        return fruitArrayList.stream()
+                .filter(i -> i.getName()
+                        .equals(removeObject))
+                .reduce((first, second) -> second)
+                .get();
     }
 
     private static void removeMeats(ArrayList<Meat> meatArrayList, Scanner sc) {
@@ -525,7 +528,7 @@ public class Main {
     private static void getLengthOfObjectsTextDynamiskFruit(ArrayList<Fruit> fruitArrayList) {
 
         try {
-            int nameLength = fruitArrayList.stream()
+            int nameLengthObject = fruitArrayList.stream()
                     .sorted(Comparator.comparing(Fruit::getName))
                     .mapToInt(i -> i.getName().length())
                     .reduce((first, second) -> second)
@@ -535,20 +538,19 @@ public class Main {
                     .sorted(Comparator.comparing(Fruit::getPris))
                     .map(i -> String.valueOf(i.getPris()))
                     .reduce((first, second) -> second)
-                    .stream().mapToInt(i -> i.length())
+                    .stream().mapToInt(String::length)
                     .sum());
 
             String eanLength = String.valueOf(fruitArrayList.stream()
                     .sorted(Comparator.comparing(Fruit::getEAN))
                     .map(i -> String.valueOf(i.getEAN()))
                     .reduce((first, second) -> second)
-                    .stream().mapToInt(i -> i.length())
+                    .stream().mapToInt(String::length)
                     .sum());
 
-            var nameLengthOfObject = nameLength;
             int prisLengthOfObject = Integer.parseInt(prisLenght);
             int eanLengthObject = Integer.parseInt(eanLength);
-            var sumOfObjectLength = nameLengthOfObject + prisLengthOfObject + eanLengthObject;
+            var sumOfObjectLength = nameLengthObject + prisLengthOfObject + eanLengthObject;
 
             int lengthWithOutObjectLength = 37;
 
@@ -561,16 +563,15 @@ public class Main {
 
     private static void getLengthOfObjectsTextDynamisk_Meat(ArrayList<Meat> meatArrayList) {
         try {
-            int nameLength = meatArrayList.stream().sorted(Comparator.comparing(Meat::getName)).mapToInt(i -> i.getName().length()).reduce((first, second) -> second).getAsInt();
+            int nameLengthObject = meatArrayList.stream().sorted(Comparator.comparing(Meat::getName)).mapToInt(i -> i.getName().length()).reduce((first, second) -> second).getAsInt();
 
-            String prisLenght = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getPris)).map(i -> String.valueOf(i.getPris())).reduce((first, second) -> second).stream().mapToInt(i -> i.length()).sum());
+            String prisLenght = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getPris)).map(i -> String.valueOf(i.getPris())).reduce((first, second) -> second).stream().mapToInt(String::length).sum());
 
-            String eanLenght = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getEAN)).map(i -> String.valueOf(i.getEAN())).reduce((first, second) -> second).stream().mapToInt(i -> i.length()).sum());
+            String eanLenght = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getEAN)).map(i -> String.valueOf(i.getEAN())).reduce((first, second) -> second).stream().mapToInt(String::length).sum());
 
-            var nameLengthOfObject = nameLength;
             int prisLengthOfObject = Integer.parseInt(prisLenght);
             int eanLengthObject = Integer.parseInt(eanLenght);
-            var sumOfObjectLenth = nameLengthOfObject + prisLengthOfObject + eanLengthObject;
+            var sumOfObjectLenth = nameLengthObject + prisLengthOfObject + eanLengthObject;
 
             int lengthWithOutObjectLength = 37;
             xPlacer("=".repeat(sumOfObjectLenth + lengthWithOutObjectLength));
@@ -746,7 +747,7 @@ public class Main {
 
         Path filePath = Path.of(homeFolder, "FruitFolder.txt");
 
-        Scanner s = null;
+        Scanner s;
         try {
             if (!Files.exists(filePath)) {
                 Files.createFile(filePath);
@@ -790,7 +791,7 @@ public class Main {
 
         Path filePath = Path.of(homeFolder, "MeatFolder.txt");
 
-        Scanner s = null;
+        Scanner s;
         try {
             if (!Files.exists(filePath)) {
                 Files.createFile(filePath);
@@ -831,9 +832,8 @@ public class Main {
     }
 
     private static String getHomeFolder() {
-        String homeFolder = System.getProperty("user.home");
         //System.out.println(homeFolder);
-        return homeFolder;
+        return System.getProperty("user.home");
     }
 }
 
