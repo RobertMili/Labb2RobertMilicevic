@@ -1,6 +1,6 @@
-import java.util.Objects;
 
-public class Meat extends Product{
+
+public final class Meat extends Product{
 
 
     public Meat(String name, int pris, int EAN) {

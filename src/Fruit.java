@@ -1,6 +1,6 @@
-import java.util.Objects;
 
-public class Fruit extends Product{
+
+public final class Fruit extends Product{
     public Fruit(String name, int pris, int EAN) {
         super(name, pris, EAN);
     }

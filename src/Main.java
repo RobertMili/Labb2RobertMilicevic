@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args)  {
         Scanner sc = new Scanner(System.in);
         //TODO change in addProduct to unComment
         // ta bort fixa med namn ta bort
@@ -144,22 +144,11 @@ public class Main {
                     productsAddingToReceipt();
                     String choice7 = sc.nextLine();
 
-                    if (choice7.equals("1")) {
-
-                        addToReceiptFruit(sc, fruitList, productsTogether);
-
-                    } else if (choice7.equals("2")) {
-
-                        addToReceiptMeat(sc, fruitList, meatList, productsTogether);
-
-                    } else if (choice7.equals("3")) {
-
-                        receiptPrintOut(fruitList, productsTogether);
-
-
-                    } else if (choice7.equals("4")) {
-
-                        receiptPrintOutDiscount(fruitList, productsTogether);
+                    switch (choice7) {
+                        case "1" -> addToReceiptFruit(sc, fruitList, productsTogether);
+                        case "2" -> addToReceiptMeat(sc, fruitList, meatList, productsTogether);
+                        case "3" -> receiptPrintOut(fruitList, productsTogether);
+                        case "4" -> receiptPrintOutDiscount(fruitList, productsTogether);
                     }
                 }
                 case "9" -> {
@@ -197,8 +186,8 @@ public class Main {
                 ========
                 Välja Category:
                 1. Välja Frukt
-                2. Välja Kött 
-                e. avsluta """;
+                2. Välja Kött\040
+                e. avsluta\040""";
         System.out.println(secondMeny);
     }
 
@@ -209,7 +198,7 @@ public class Main {
                 ========
                 Välja Category:
                 1. Välja Frukt
-                2. Välja Kött 
+                2. Välja Kött
                 3. Vissa på kvitto
                 4. Vissa kvitto med rabat
                 e. avsluta
@@ -427,7 +416,7 @@ public class Main {
         lagerSaldoFruits(fruitList);
 
         System.out.print("Skriv till vilken EAN number vill du att varor ska skrivas ut : ");
-        int counting = 1;
+
 
         try {
             int search = sc.nextInt();
@@ -447,7 +436,6 @@ public class Main {
         lagerSaldoMeats(meatList);
 
         System.out.print("Skriv till vilken EAN number vill du att varor ska skrivas ut: ");
-        int counting = 1;
 
         try {
             int search = sc.nextInt();
@@ -537,11 +525,25 @@ public class Main {
     private static void getLengthOfObjectsTextDynamiskFruit(ArrayList<Fruit> fruitArrayList) {
 
         try {
-            int nameLength = fruitArrayList.stream().sorted(Comparator.comparing(Fruit::getName)).mapToInt(i -> i.getName().length()).reduce((first, second) -> second).getAsInt();
+            int nameLength = fruitArrayList.stream()
+                    .sorted(Comparator.comparing(Fruit::getName))
+                    .mapToInt(i -> i.getName().length())
+                    .reduce((first, second) -> second)
+                    .getAsInt();
 
-            String prisLenght = String.valueOf(fruitArrayList.stream().sorted(Comparator.comparing(Fruit::getPris)).map(i -> String.valueOf(i.getPris())).reduce((first, second) -> second).stream().mapToInt(i -> i.length()).sum());
+            String prisLenght = String.valueOf(fruitArrayList.stream()
+                    .sorted(Comparator.comparing(Fruit::getPris))
+                    .map(i -> String.valueOf(i.getPris()))
+                    .reduce((first, second) -> second)
+                    .stream().mapToInt(i -> i.length())
+                    .sum());
 
-            String eanLength = String.valueOf(fruitArrayList.stream().sorted(Comparator.comparing(Fruit::getEAN)).map(i -> String.valueOf(i.getEAN())).reduce((first, second) -> second).stream().mapToInt(i -> i.length()).sum());
+            String eanLength = String.valueOf(fruitArrayList.stream()
+                    .sorted(Comparator.comparing(Fruit::getEAN))
+                    .map(i -> String.valueOf(i.getEAN()))
+                    .reduce((first, second) -> second)
+                    .stream().mapToInt(i -> i.length())
+                    .sum());
 
             var nameLengthOfObject = nameLength;
             int prisLengthOfObject = Integer.parseInt(prisLenght);
