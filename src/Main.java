@@ -271,7 +271,7 @@ public class Main {
         boolean equals = meatList.stream().anyMatch(i -> i.getEAN() == EAN);
 
         immutableEANMeat(meatList, name, price, EAN, equals);
-        //You need to delete this:
+        //TODO You need to delete this:
         //addMeatLists(meatList, name, price, EAN);
 
     }
@@ -633,7 +633,6 @@ public class Main {
 
     }
 
-
     private static void receiptPrintOutDiscount(ArrayList<Fruit> fruitList, ArrayList<Product> productsTogether) {
         getLengthOfObjectsTextDynamiskFruit(fruitList);
         System.out.println("Den här är kvitto: ");
@@ -777,9 +776,6 @@ public class Main {
                     }
                 }
             }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -809,7 +805,7 @@ public class Main {
 
                 if (!list.isEmpty()) {
 
-                    String listProduct = String.valueOf(list.get(0));
+                    String listProduct;
                     int listPris = Integer.parseInt(list.get(1));
                     int listEAN = Integer.parseInt(list.get(2));
 
@@ -824,9 +820,6 @@ public class Main {
                     }
                 }
             }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
