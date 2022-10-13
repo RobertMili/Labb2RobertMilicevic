@@ -219,15 +219,15 @@ public class Main {
     private static void addFruits(Scanner sc, ArrayList<Fruit> fruitList) {
 
 
-        System.out.print("Please enter name of fruit: ");
+        System.out.print("Skriv namn på frukt: ");
         //String name = "BANANA";
         String name = sc.nextLine().toUpperCase();
 
-        System.out.print("Please enter price of " + name + ": ");
+        System.out.print("Skriv pris på " + name + ": ");
         //int price = 10;
         int price = sc.nextInt();
 
-        System.out.print("Please enter EAN (code) for " + name + ": ");
+        System.out.print("Skriv  EAN (Qr code) för " + name + ": ");
         //int EAN = 123;
         int EAN = sc.nextInt();
 
@@ -256,15 +256,15 @@ public class Main {
 
     private static void addMeats(Scanner sc, ArrayList<Meat> meatList) {
 
-        System.out.print("Please enter name of fruit:");
+        System.out.print("Skriv namn på frukt:");
         //String name = "KYCKLING";
         String name = sc.nextLine();
 
-        System.out.print("Please enter price of " + name + ": ");
+        System.out.print("Skriv pris på " + name + ": ");
         //int price = 10;
         int price = sc.nextInt();
 
-        System.out.print("Please enter EAN (code) for " + name + ": ");
+        System.out.print("Skriv  EAN (Qr code) för " + name + ": ");
         //int EAN = 123;
         int EAN = sc.nextInt();
 
