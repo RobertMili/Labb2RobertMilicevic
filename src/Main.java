@@ -19,7 +19,7 @@ public class Main {
         ArrayList<Meat> meatList = new ArrayList<>();
         ArrayList<Product> productsTogether = new ArrayList<>();
 
-        readingFile(fruitList,meatList); // creating file or reading file
+        readingFile(fruitList, meatList); // creating file or reading file
 
         while (true) {
             mainMeny();
@@ -190,16 +190,6 @@ public class Main {
                 2. Välja Kött 
                 e. avsluta """;
         System.out.println(secondMeny);
-    }
-
-    private static void menyFolder() {
-        System.out.println("""
-                 Meny
-                  ========
-                Välja Category:
-                1. Läsa file
-                e. avsluta ;
-                 """);
     }
 
     private static void productsAddingToReceipt() {
@@ -712,7 +702,7 @@ public class Main {
         System.out.println("File har sparat på :" + filePath);
     }
 
-    private static void savingMeatFolder(ArrayList<Meat> meatList ) {
+    private static void savingMeatFolder(ArrayList<Meat> meatList) {
         String homeFolder = getHomeFolder();
 
 
@@ -728,7 +718,6 @@ public class Main {
 
                 }
                 Files.writeString(filePath, meat + System.lineSeparator(), StandardOpenOption.APPEND);
-
 
 
             } catch (FileAlreadyExistsException e) {
