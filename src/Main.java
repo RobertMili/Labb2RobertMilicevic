@@ -525,6 +525,8 @@ public class Main {
         getLengthOfObjectsTextDynamisk_Meat(meatArrayList);
     }
 
+
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     private static void getLengthOfObjectsTextDynamiskFruit(ArrayList<Fruit> fruitArrayList) {
 
         try {
@@ -561,6 +563,7 @@ public class Main {
         }
     }
 
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     private static void getLengthOfObjectsTextDynamisk_Meat(ArrayList<Meat> meatArrayList) {
         try {
             int nameLengthObject = meatArrayList.stream().sorted(Comparator.comparing(Meat::getName)).mapToInt(i -> i.getName().length()).reduce((first, second) -> second).getAsInt();
