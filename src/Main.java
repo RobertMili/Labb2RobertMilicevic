@@ -475,7 +475,7 @@ public class Main {
                 .filter(i -> i.getName()
                         .equals(removeObject))
                 .reduce((first, second) -> second)
-                .get();
+                .orElse(null);
     }
 
     private static void removeMeats(ArrayList<Meat> meatArrayList, Scanner sc) {
@@ -487,7 +487,7 @@ public class Main {
         try {
             String removeObject = sc.nextLine().toUpperCase();
 
-            Meat removeFruits = meatArrayList.stream().filter(i -> i.getName().equals(removeObject)).reduce((first, second) -> second).get();
+            Meat removeFruits = meatArrayList.stream().filter(i -> i.getName().equals(removeObject)).reduce((first, second) -> second).orElse(null);
 
             meatArrayList.remove(removeFruits);
         } catch (Exception e) {
@@ -534,7 +534,7 @@ public class Main {
                     .reduce((first, second) -> second)
                     .getAsInt();
 
-            String prisLenght = String.valueOf(fruitArrayList.stream()
+            String priceLength = String.valueOf(fruitArrayList.stream()
                     .sorted(Comparator.comparing(Fruit::getPris))
                     .map(i -> String.valueOf(i.getPris()))
                     .reduce((first, second) -> second)
@@ -548,7 +548,7 @@ public class Main {
                     .stream().mapToInt(String::length)
                     .sum());
 
-            int prisLengthOfObject = Integer.parseInt(prisLenght);
+            int prisLengthOfObject = Integer.parseInt(priceLength);
             int eanLengthObject = Integer.parseInt(eanLength);
             var sumOfObjectLength = nameLengthObject + prisLengthOfObject + eanLengthObject;
 
@@ -565,16 +565,16 @@ public class Main {
         try {
             int nameLengthObject = meatArrayList.stream().sorted(Comparator.comparing(Meat::getName)).mapToInt(i -> i.getName().length()).reduce((first, second) -> second).getAsInt();
 
-            String prisLenght = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getPris)).map(i -> String.valueOf(i.getPris())).reduce((first, second) -> second).stream().mapToInt(String::length).sum());
+            String prisLength = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getPris)).map(i -> String.valueOf(i.getPris())).reduce((first, second) -> second).stream().mapToInt(String::length).sum());
 
-            String eanLenght = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getEAN)).map(i -> String.valueOf(i.getEAN())).reduce((first, second) -> second).stream().mapToInt(String::length).sum());
+            String eanLength = String.valueOf(meatArrayList.stream().sorted(Comparator.comparing(Meat::getEAN)).map(i -> String.valueOf(i.getEAN())).reduce((first, second) -> second).stream().mapToInt(String::length).sum());
 
-            int prisLengthOfObject = Integer.parseInt(prisLenght);
-            int eanLengthObject = Integer.parseInt(eanLenght);
-            var sumOfObjectLenth = nameLengthObject + prisLengthOfObject + eanLengthObject;
+            int prisLengthOfObject = Integer.parseInt(prisLength);
+            int eanLengthObject = Integer.parseInt(eanLength);
+            var sumOfObjectLength = nameLengthObject + prisLengthOfObject + eanLengthObject;
 
             int lengthWithOutObjectLength = 37;
-            xPlacer("=".repeat(sumOfObjectLenth + lengthWithOutObjectLength));
+            xPlacer("=".repeat(sumOfObjectLength + lengthWithOutObjectLength));
         } catch (Exception e) {
             // catch if fruitArrays empty because this is main for length av objects.
             System.out.println(" ");
@@ -594,7 +594,7 @@ public class Main {
 
         String removeObject = sc.nextLine().toUpperCase();
 
-        Meat removeMeat = meatList.stream().filter(i -> i.getName().equals(removeObject)).reduce((first, second) -> second).get();
+        Meat removeMeat = meatList.stream().filter(i -> i.getName().equals(removeObject)).reduce((first, second) -> second).orElse(null);
 
         meatList.remove(removeMeat);
 
