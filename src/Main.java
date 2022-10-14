@@ -9,15 +9,15 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //TODO change in addProduct to unComment
         // ta bort fixa med namn ta bort
 
 
-       final ArrayList<Fruit> fruitList = new ArrayList<>();
-       final ArrayList<Meat> meatList = new ArrayList<>();
-       final ArrayList<Product> productsTogether = new ArrayList<>();
+        final ArrayList<Fruit> fruitList = new ArrayList<>();
+        final ArrayList<Meat> meatList = new ArrayList<>();
+        final ArrayList<Product> productsTogether = new ArrayList<>();
 
         readingFile(fruitList, meatList); // creating file or reading file
 
@@ -214,7 +214,8 @@ public class Main {
         //String name = "BANANA";
         String name = sc.nextLine().toUpperCase();
 
-        System.out.print("Skriv pris på " + name + ": ");
+        printQuestionPrice(name);
+        //+ name +
         //int price = 10;
         int price = sc.nextInt();
 
@@ -247,11 +248,11 @@ public class Main {
 
     private static void addMeats(Scanner sc, ArrayList<Meat> meatList) {
 
-        System.out.print("Skriv namn på frukt:");
+        System.out.print("Skriv namn på meat:");
         //String name = "KYCKLING";
         String name = sc.nextLine();
 
-        System.out.print("Skriv pris på " + name + ": ");
+        printQuestionPrice(name);
         //int price = 10;
         int price = sc.nextInt();
 
@@ -265,6 +266,10 @@ public class Main {
         //TODO You need to delete this:
         //addMeatLists(meatList, name, price, EAN);
 
+    }
+
+    private static void printQuestionPrice(String name) {
+        System.out.print("Skriv pris på " + name + " : ");
     }
 
     private static void immutableEANMeat(ArrayList<Meat> meatList, String name, int price, int EAN, boolean equals) {
@@ -525,8 +530,6 @@ public class Main {
         getLengthOfObjectsTextDynamisk_Meat(meatArrayList);
     }
 
-
-
     private static void getLengthOfObjectsTextDynamiskFruit(ArrayList<Fruit> fruitArrayList) {
 
         try {
@@ -562,7 +565,6 @@ public class Main {
             System.out.println(" ");
         }
     }
-
 
     private static void getLengthOfObjectsTextDynamisk_Meat(ArrayList<Meat> meatArrayList) {
         try {
@@ -696,22 +698,9 @@ public class Main {
         String homeFolder = getHomeFolder();
 
         Path filePath = Path.of(homeFolder, "FruitFolder.txt");
-        //System.out.println(filePath);
-
 
         for (Fruit fruit : fruitList) {
-            try {
-                if (!Files.exists(filePath)) {
-                    Files.createFile(filePath);
-                    System.out.println("Creating new Folder");
-                }
-                Files.writeString(filePath, fruit + System.lineSeparator(), StandardOpenOption.APPEND);
-
-            } catch (FileAlreadyExistsException e) {
-                System.out.println("File already exists: " + e.getMessage());
-            } catch (IOException e) {
-                throw new RuntimeException(e.getClass().getName() + " " + e.getMessage());
-            }
+            creatingReadingFile(filePath, fruit + System.lineSeparator(), fruit);
         }
 
         System.out.println("File har sparat på :" + filePath);
@@ -722,27 +711,26 @@ public class Main {
 
 
         Path filePath = Path.of(homeFolder, "MeatFolder.txt");
-        //System.out.println(filePath);
-
 
         for (Meat meat : meatList) {
-            try {
-                if (!Files.exists(filePath)) {
-                    Files.createFile(filePath);
-                    System.out.println("Creating new Folder");
-
-                }
-                Files.writeString(filePath, meat + System.lineSeparator(), StandardOpenOption.APPEND);
-
-
-            } catch (FileAlreadyExistsException e) {
-                System.out.println("File already exists: " + e.getMessage());
-
-            } catch (IOException e) {
-                throw new RuntimeException(e.getClass().getName() + " " + e.getMessage());
-            }
+            creatingReadingFile(filePath, meat + System.lineSeparator(), null);
         }
         System.out.println("File har sparat på :" + filePath);
+    }
+
+    private static void creatingReadingFile(Path filePath, String s, Fruit ignoredFruit) {
+        try {
+            if (!Files.exists(filePath)) {
+                Files.createFile(filePath);
+                System.out.println("Creating new Folder");
+            }
+            Files.writeString(filePath, s, StandardOpenOption.APPEND);
+
+        } catch (FileAlreadyExistsException e) {
+            System.out.println("File already exists: " + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e.getClass().getName() + " " + e.getMessage());
+        }
     }
 
     private static void readingFileFruit(ArrayList<Fruit> fruitArrayList) {
@@ -776,9 +764,6 @@ public class Main {
 
                     for (int i = 0; i < list.size(); i = i + 3) {
                         listProduct = list.get(i);
-
-                        //System.out.println("i = " + i);
-                        //System.out.println("list product " + listProduct );
 
                         fruitArrayList.add(new Fruit(listProduct, listPris, listEAN));
                     }
@@ -820,10 +805,6 @@ public class Main {
                     for (int i = 0; i < list.size(); i = i + 3) {
                         listProduct = list.get(i);
 
-                        //System.out.println("i = " + i);
-                        //System.out.println("list product " + listProduct );
-
-                        // System.out.println("this is a EAN: " + listEAN);
                         meatArrayList.add(new Meat(listProduct, listPris, listEAN));
                     }
                 }
