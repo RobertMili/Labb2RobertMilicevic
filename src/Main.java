@@ -174,7 +174,7 @@ public class Main {
                 6. Ta bort
                 7. Lagersaldo
                 8. Lägg på kvitto
-                9. Läsa från file
+                9. Spara till file
                 e. Avsluta och spara""";
 
         System.out.println(menyText);
@@ -212,10 +212,10 @@ public class Main {
 
         System.out.print("Skriv namn på frukt: ");
         //String name = "BANANA";
-        String name = sc.nextLine().toUpperCase();
+        String name = getStringInput(sc);
 
         printQuestionPrice(name);
-        //+ name +
+
         //int price = 10;
         int price = sc.nextInt();
 
@@ -247,18 +247,21 @@ public class Main {
     }
 
     private static void addMeats(Scanner sc, ArrayList<Meat> meatList) {
+        String name;
+        int price;
+        int EAN;
 
         System.out.print("Skriv namn på meat:");
         //String name = "KYCKLING";
-        String name = sc.nextLine();
+        name = getStringInput(sc);
 
         printQuestionPrice(name);
         //int price = 10;
-        int price = sc.nextInt();
+        price = sc.nextInt();
 
         System.out.print("Skriv  EAN (Qr code) för " + name + ": ");
         //int EAN = 123;
-        int EAN = sc.nextInt();
+        EAN = sc.nextInt();
 
         boolean equals = meatList.stream().anyMatch(i -> i.getEAN() == EAN);
 
@@ -266,6 +269,9 @@ public class Main {
         //TODO You need to delete this:
         //addMeatLists(meatList, name, price, EAN);
 
+    }
+    private static String getStringInput(Scanner sc) {
+        return sc.nextLine().toUpperCase();
     }
 
     private static void printQuestionPrice(String name) {
@@ -492,7 +498,10 @@ public class Main {
         try {
             String removeObject = sc.nextLine().toUpperCase();
 
-            Meat removeFruits = meatArrayList.stream().filter(i -> i.getName().equals(removeObject)).reduce((first, second) -> second).orElse(null);
+            Meat removeFruits = meatArrayList.stream()
+                    .filter(i -> i.getName().equals(removeObject))
+                    .reduce((first, second) -> second)
+                    .orElse(null);
 
             meatArrayList.remove(removeFruits);
         } catch (Exception e) {
@@ -591,31 +600,6 @@ public class Main {
         System.out.println(repeat);
     }
 
-    private static void addToReceiptMeat(Scanner sc, ArrayList<Fruit> fruitList, ArrayList<Meat> meatList, ArrayList<Product> productsTogether) {
-        lagerSaldoMeats(meatList);
-
-        System.out.print("Skriv vad vill du lägga på kvitto: ");
-
-
-        String removeObject = sc.nextLine().toUpperCase();
-
-        Meat removeMeat = meatList.stream().filter(i -> i.getName().equals(removeObject)).reduce((first, second) -> second).orElse(null);
-
-        meatList.remove(removeMeat);
-
-
-        lagerSaldoMeats(meatList);
-        getLengthOfObjectsTextDynamisk_Meat(meatList);
-
-        productsTogether.add(removeMeat);
-
-        System.out.println("\nDen här har du lagt på kvitto: ");
-        getLengthOfObjectsTextDynamiskFruit(fruitList);
-
-        productsTogether.forEach(System.out::println);
-        getLengthOfObjectsTextDynamiskFruit(fruitList);
-    }
-
     private static void addToReceiptFruit(Scanner sc, ArrayList<Fruit> fruitList, ArrayList<Product> productsTogether) {
         lagerSaldoFruits(fruitList);
 
@@ -642,10 +626,33 @@ public class Main {
         getLengthOfObjectsTextDynamiskFruit(fruitList);
 
     }
+    private static void addToReceiptMeat(Scanner sc, ArrayList<Fruit> fruitList, ArrayList<Meat> meatList, ArrayList<Product> productsTogether) {
+        lagerSaldoMeats(meatList);
+
+        System.out.print("Skriv vad vill du lägga på kvitto: ");
+
+
+        String removeObject = sc.nextLine().toUpperCase();
+
+        Meat removeMeat = meatList.stream().filter(i -> i.getName().equals(removeObject)).reduce((first, second) -> second).orElse(null);
+
+        meatList.remove(removeMeat);
+
+        lagerSaldoMeats(meatList);
+        getLengthOfObjectsTextDynamisk_Meat(meatList);
+
+        productsTogether.add(removeMeat);
+
+        System.out.println("\nDen här har du lagt på kvitto: \n");
+        getLengthOfObjectsTextDynamiskFruit(fruitList);
+
+        productsTogether.forEach(System.out::println);
+        getLengthOfObjectsTextDynamiskFruit(fruitList);
+    }
 
     private static void receiptPrintOutDiscount(ArrayList<Fruit> fruitList, ArrayList<Product> productsTogether) {
         getLengthOfObjectsTextDynamiskFruit(fruitList);
-        System.out.println("Den här är kvitto: ");
+        System.out.println("Den här är kvitto: \n");
         productsTogether.forEach(System.out::println);
         receiptDiscount(productsTogether);
         getLengthOfObjectsTextDynamiskFruit(fruitList);
@@ -653,7 +660,7 @@ public class Main {
 
     private static void receiptPrintOut(ArrayList<Fruit> fruitList, ArrayList<Product> productsTogether) {
         getLengthOfObjectsTextDynamiskFruit(fruitList);
-        System.out.println("Den här är kvitto: ");
+        System.out.println("Den här är kvitto: \n");
         productsTogether.forEach(System.out::println);
         receipt(productsTogether);
         getLengthOfObjectsTextDynamiskFruit(fruitList);

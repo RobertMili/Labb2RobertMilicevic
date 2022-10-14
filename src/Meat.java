@@ -10,6 +10,6 @@ public final class Meat extends Product{
 
     @Override
     public String toString() {
-        return super.getName()+ "       " + super.getPris() + "     "+ super.getEAN();
+        return super.getName()+ "     " + super.getPris() + "     "+ super.getEAN();
     }
 }
